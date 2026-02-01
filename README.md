@@ -1,259 +1,377 @@
-# 🥗 NutriLens AI
+#  NutriLens AI
 ## Food Intelligence Scanner & Recipe Mutation Engine
 ### Powered by Foodoscope APIs
 
 ---
 
-# 📌 System Overview
+#  System Overview
 
 NutriLens AI is a computational food intelligence platform that:
 
-- **Scans food** via camera
-- **Detects ingredients** automatically (OCR + Vision)
-- **Computes nutrition** using Foodoscope APIs
-- **Evaluates health score**
-- **Generates recipes**
-- **Mutates recipes** into healthier & Indian-friendly versions
-- **Personalizes meals** for users
+- scans food using camera
+- detects ingredients via OCR + Computer Vision
+- computes nutrition via Foodoscope APIs
+- classifies health quality
+- generates recipes
+- mutates recipes into healthier & Indian-style versions
+- provides conversational cooking guidance using LLMs
 
 ---
 
-# 🎯 Core Idea
+# Core Idea
 
-**Transform:** Food (Image/Text) → Structured Data → Nutrition Intelligence → Actionable Recipes → Healthy Indian Meals
+Transform:
+
+Food (Image/Text)
+→ Structured Ingredients
+→ Nutrition Intelligence
+→ Recipe Generation
+→ Recipe Mutation (Healthy + Indian)
+→ Actionable Meal Plan
 
 ---
 
-# 🏗 High-Level Architecture
+
+
+#  High Level Architecture
+
+```
+Client → API Gateway → Backend → Intelligence Engine → Foodoscope APIs → DB
+```
+
+
+
+---
+
+#  Layered Architecture
+
+## 1️ Presentation Layer
+- Mobile / Web App
+- Scan camera
+- Dashboard
+- Meal plans
+- Chat assistant
+
+## 2️ API Gateway
+- Auth
+- Rate limiting
+- Routing
+- Logging
+
+## 3️ Backend Services
+- Image Processing Service
+- Food Classification Service
+- Nutrition Engine
+- Recipe Engine
+- Mutation Engine
+- LLM Orchestrator
+- Recommendation Engine
+
+## 4️ External Layer
+- Foodoscope RecipeDB
+- Foodoscope FlavorDB
+- LLM Provider
+
+## 5️ Storage Layer
+- Users
+- Meals
+- Recipes
+- Nutrition
+- History
+
+
+
+---
+
+#  COMPLETE USER FLOW
+
+```mermaid
+flowchart LR
+A[Scan Food] --> B[Detect Ingredients]
+B --> C[Fetch Nutrition]
+C --> D[Generate Recipes]
+D --> E[Mutate Recipes]
+E --> F[Show Meal Plan]
+```
+
+
+---
+
+#  STEP-WISE FLOWS
+
+---
+
+## Step 1 - Scan & Detect
 
 ```mermaid
 flowchart TD
-    A[Mobile/Web App] --> B[API Gateway]
-    B --> C[Backend Services]
-    C --> D[Food Intelligence Engine]
-    D --> E[Foodoscope APIs]
-    D --> F[Database]
+A[Camera] --> B[Image Upload]
+B --> C[OCR]
+B --> D[Object Detection]
+C --> E[Ingredients]
+D --> E
+```
 
-🧩 Layered Architecture
-Layer 1 — Presentation Layer
-Camera Scan
+---
 
-User Inputs
+## Step 2 - Nutrition Fetch
 
-Meal Plans
-
-Dashboard
-
-Layer 2 — API Gateway
-Auth
-
-Routing
-
-Rate limiting
-
-Layer 3 — Backend Services
-Image Processing
-
-Classification
-
-Nutrition Engine
-
-Recipe Engine
-
-Mutation Engine
-
-LLM Orchestrator
-
-Layer 4 — Food Data
-RecipeDB
-
-FlavorDB
-
-Layer 5 — Storage
-Users
-
-Meals
-
-History
-
-🔁 COMPLETE END-TO-END FLOW
-Code snippet
-flowchart LR
-    A[User Scan] --> B[Image Processing]
-    B --> C[Ingredient Detection]
-    C --> D[Nutrition Analysis]
-    D --> E[Recipe Generation]
-    E --> F[Recipe Mutation]
-    F --> G[Final Meal Plan]
-🔍 STEP-WISE ARCHITECTURE FLOWS
-🟡 Step 1 — Image Scan & Detection
-Description
-User fridge/packet ka photo upload karta hai.
-
-System OCR + Computer Vision se ingredients detect karta hai.
-
-Flow
-Code snippet
+```mermaid
 flowchart TD
-    A[User Camera] --> B[Image Upload]
-    B --> C[Preprocess]
-    C --> D[OCR/Text Detection]
-    C --> E[Object Detection]
-    D --> F[Ingredients List]
-    E --> F
-Output
-JSON
-["milk", "spinach", "bread", "paneer"]
-🟡 Step 2 — Food Classification
-Description
-Items ko classify kiya jata hai:
+A[Ingredients] --> B[Backend]
+B --> C[RecipeDB]
+B --> D[FlavorDB]
+C --> E[Nutrition Data]
+D --> E
+```
 
-veg/non-veg
+---
 
-processed/raw
+## Step 3 - Recipe Generation
 
-healthy/unhealthy
-
-Flow
-Code snippet
+```mermaid
 flowchart TD
-    A[Ingredients] --> B[Rule Engine]
-    B --> C[Veg/NonVeg]
-    B --> D[Processed/Raw]
-    B --> E[Health Tag]
-🟡 Step 3 — Nutrition Intelligence (Foodoscope Integration)
-Description
-Foodoscope APIs se nutrition fetch karte hain.
+A[Ingredients] --> B[Recipe Query]
+B --> C[RecipeDB]
+C --> D[Recipes]
+```
 
-Flow
-Code snippet
+---
+
+## Step 4 - Mutation Engine
+
+```mermaid
 flowchart TD
-    A[Ingredients] --> B[Backend]
-    B --> C[RecipeDB API]
-    B --> D[FlavorDB API]
-    C --> E[Nutrition Data]
-    D --> E
-Output
-Calories, Protein, Carbs, Fat, Health Score
+A[Recipe] --> B[Nutrition Analysis]
+B --> C[Healthy Substitution]
+C --> D[Flavor Match]
+D --> E[Indian Adaptation]
+E --> F[Final Recipe]
+```
 
-🟡 Step 4 — Recipe Generation
-Description
-Available ingredients se matching recipes generate karte hain.
+---
 
-Flow
-Code snippet
+## Step 5 - LLM Structuring
+
+```mermaid
 flowchart TD
-    A[Ingredients] --> B[Recipe Query Engine]
-    B --> C[RecipeDB]
-    C --> D[Filtered Recipes]
-🟡 Step 5 — Recipe Mutation Engine ⭐ (Core Innovation)
-Description
-Recipes ko healthier, locally available, and Indian-friendly banata hai.
+A[User Prompt] --> B[LLM]
+B --> C[Structured JSON]
+C --> D[Backend Services]
+```
 
-Flow
-Code snippet
+---
+
+
+# Core Brain
+
+```mermaid
 flowchart TD
-    A[Original Recipe] --> B[Nutrition Analysis]
-    B --> C[Substitution Engine]
-    C --> D[Flavor Matching]
-    D --> E[Indian Adaptation Rules]
-    E --> F[Mutated Recipe]
-Example Substitution
-Cream → Curd
+A[Nutrition Logic]
+B[Recipe Logic]
+C[Substitution]
+D[Flavor Science]
+E[Personalization]
 
-Maida → Atta
+A --> F[Food Intelligence Engine]
+B --> F
+C --> F
+D --> F
+E --> F
+```
 
-Butter → Ghee-lite
+---
 
-🟡 Step 6 — LLM Orchestration
-Description
-Natural language processing to convert user intent into structured queries.
 
-Flow
-Code snippet
-flowchart TD
-    A[User Prompt] --> B[LLM]
-    B --> C[Structured JSON]
-    C --> D[Recipe Engine]
-    D --> E[Cooking Steps]
-🟡 Step 7 — Final Output Delivery
-Description
-User interface results delivery.
+#  BACKEND API ENDPOINTS (FULL SPEC)
 
-Flow
-Code snippet
-flowchart TD
-    A[Meal Plan] --> B[UI Rendering]
-    B --> C[Dashboard]
-    B --> D[Cooking Guide]
-    B --> E[Nutrition Chart]
-🧠 Core Brain (Food Intelligence Engine)
-Code snippet
-flowchart TD
-    A[Nutrition Logic]
-    B[Recipe Logic]
-    C[Substitution Logic]
-    D[Flavor Matching]
-    E[Personalization]
+---
 
-    A --> F[Food Intelligence Engine]
-    B --> F
-    C --> F
-    D --> F
-    E --> F
-🗄 Database Schema (Logical)
-Code snippet
+##  Auth
+
+### POST /auth/signup
+Create user
+
+### POST /auth/login
+Login user
+
+### GET /auth/me
+Fetch current user
+
+---
+
+##  User Profile
+
+### GET /user/profile
+Fetch user profile
+
+### PUT /user/profile
+Update preferences (diet, disease, allergies)
+
+### GET /user/history
+Past meals & scans
+
+---
+
+##  Scan Service
+
+### POST /scan/image
+Upload image  
+Response → detected ingredients
+
+### POST /scan/barcode
+Scan packaged food
+
+### POST /scan/manual
+Manual ingredient input
+
+---
+
+## Ingredient Intelligence
+
+### POST /ingredients/classify
+veg/non-veg/processed
+
+### POST /ingredients/nutrition
+Fetch nutrition (Foodoscope)
+
+### POST /ingredients/health-score
+Compute health rating
+
+---
+
+##  Recipe Engine
+
+### POST /recipes/generate
+Generate recipes from ingredients
+
+### POST /recipes/filter
+Filter by calories/goal
+
+### GET /recipes/:id
+Get recipe details
+
+---
+
+##  Mutation Engine 
+
+### POST /recipes/mutate
+Transform recipe → healthier
+
+### POST /recipes/indianize
+Convert to Indian style
+
+### POST /recipes/substitute
+Ingredient substitution
+
+---
+
+##  Meal Planning
+
+### POST /meal-plan/generate
+Daily/weekly plan
+
+### GET /meal-plan/today
+Today meals
+
+### GET /meal-plan/week
+Weekly plan
+
+---
+
+##  LLM Service
+
+### POST /chat
+Natural language query
+
+### POST /chat/recipe-help
+Cooking instructions
+
+---
+
+##  Analytics
+
+### GET /analytics/nutrition
+Macro/micro summary
+
+### GET /analytics/health-score
+User diet quality
+
+---
+
+##  Doctor/Dietician Mode (optional)
+
+### GET /doctor/patients
+Patient list
+
+### GET /doctor/patient/:id
+Patient diet data
+
+### POST /doctor/assign-plan
+Assign plan
+
+---
+
+
+# 🗄 Database Model (Logical)
+
+```mermaid
 erDiagram
-    USERS ||--o{ MEALS : has
-    USERS ||--o{ SCANS : performs
-    MEALS ||--o{ RECIPES : contains
-    RECIPES ||--o{ INGREDIENTS : uses
-🚀 Deployment Architecture
-Code snippet
-flowchart LR
-    A[Frontend] --> B[Backend Server]
-    B --> C[Database]
-    B --> D[Foodoscope APIs]
-    B --> E[LLM Service]
-⚙ Scalability Strategy
-Stateless backend for easy replication.
+USERS ||--o{ SCANS : performs
+USERS ||--o{ MEALS : consumes
+MEALS ||--o{ RECIPES : contains
+RECIPES ||--o{ INGREDIENTS : uses
+```
 
-Cached API responses to reduce latency and cost.
+---
 
-Async processing for heavy Vision/OCR tasks.
+#  Deployment
 
-Microservices for independent scaling of engines.
+- Frontend → Vercel
+- Backend → Docker/FastAPI/Node
+- DB → PostgreSQL/Mongo
+- Foodoscope APIs → External
+- LLM → External
 
-🎯 MVP Scope (Hackathon)
-✅ Must Build
-Image scan & ingredient detection.
+---
 
-Foodoscope nutrition fetch.
+# ⚙ Scalability
 
-Basic recipe suggestion.
+- stateless services
+- caching
+- async jobs
+- microservices
+- horizontal scaling
 
-Simple mutation engine (e.g., Maida to Atta).
+---
 
-❌ Avoid
-Complex ML training.
+#  MVP Scope
 
-Over-engineered infra.
+Must:
+- scan
+- ingredient detection
+- Foodoscope nutrition
+- recipe generation
+- mutation
 
-Large social/community features.
+Avoid:
+- heavy ML
+- fancy UI
 
-✅ Final Summary
+---
+
+## Final Summary
+
 NutriLens AI:
 
-Sees food
+- sees food
+- understands nutrition
+- generates recipes
+- mutates intelligently
+- adapts to Indian kitchens
 
-Understands nutrition
+Not a diet tracker.
 
-Generates meals
+Not a recipe app.
 
-Mutates recipes
-
-Makes healthy eating automatic
-
-Not a recipe app. Not a diet tracker. A Computational Food Intelligence System.
-
-
+A Computational Food Intelligence Platform.
