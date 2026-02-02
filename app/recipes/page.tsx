@@ -1,3 +1,6 @@
+import StepIndicator from "../components/StepIndicator";
+<StepIndicator currentPath="/recipes" />
+
 export default function RecipesPage() {
   return (
     <div className="max-w-xl mx-auto">

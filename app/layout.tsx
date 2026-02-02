@@ -25,6 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+       <head>
+        {/* Material Symbols (Google Icons) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <Navbar />
         <main className="p-6">{children}</main>
