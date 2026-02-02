@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #  NutriLens AI
 ## Food Intelligence Scanner & Recipe Mutation Engine
 ### Powered by Foodoscope APIs
